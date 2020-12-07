@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="form-group">
+        <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="userLocationName">
+       
+        <button type="button" class="btn btn-light btnSpaces" (click)="setLocation()">Search</button>
+        <button type="button" id="addAnnotation" class="btn btn-light">Add annotations</button>
+
+    </div>
+
+<!-- atara to do - replace it with annotations from store 
+ *ngFor="let item of locationData"-->
+<div class="list-group" >
+  <!-- <button type="button" class="list-group-item list-group-item-action">{{item}}</button> -->
+
+    <button type="button" class="list-group-item list-group-item-action">
+      Cras justo odio
+    </button>
+    <button type="button" class="list-group-item list-group-item-action">Dapibus ac facilisis in</button>
+    <button type="button" class="list-group-item list-group-item-action">Morbi leo risus</button>
+    <button type="button" class="list-group-item list-group-item-action">Porta ac consectetur ac</button>
+    <button type="button" class="list-group-item list-group-item-action">Vestibulum at eros</button>
+  
+  
+  </div>
+
+</div>

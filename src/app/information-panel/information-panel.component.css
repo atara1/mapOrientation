@@ -1,0 +1,22 @@
+.container {
+display: flex;
+width: 25%;
+margin-left: 1rem;
+margin-top: 1rem;
+border: 1px solid;
+padding-top: 1rem;
+}
+
+.btnSpaces {
+    margin-right: 0.2rem;
+}
+ .btn {
+    margin-top: 0.3rem;
+ }
+
+.list-group {  
+    margin-bottom: 1rem;
+    margin-top: 6rem;
+    margin-left: -13.5rem;
+    width: 13.5rem;
+}
