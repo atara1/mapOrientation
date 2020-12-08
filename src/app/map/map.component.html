@@ -1,4 +1,9 @@
-<app-information-panel (name)="search($event)" (addLocation)="addAnnontation($event)"></app-information-panel>
-<div class="map mapContainer" id="map"></div>
+<div class="mapContainer" id="map"></div>
 
+
+<div id="notFound" *ngIf="isLocationNotFound">
+    <h2>
+        The location {{(searchLocationData | async)?.text}} doesn't exist.
+    </h2>
+</div>
   

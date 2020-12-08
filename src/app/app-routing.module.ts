@@ -6,21 +6,9 @@ import { MapComponent } from './map/map.component';
 
 const routes: Routes = [
 
-  // {
-  //   path: 'locationOnMap',
-  //   component: LocationOnMapComponent
-  // },
-  // {
-  //   path: '',
-  //   redirectTo: '/locationOnMap',
-  //   pathMatch: 'full'
-  // },
-
-
-
   {
     path: 'locationOnMap',
-    component: MapComponent
+    component: LocationOnMapComponent
   },
   {
     path: '',

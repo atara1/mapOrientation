@@ -7,13 +7,12 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class LocationOnMapComponent implements OnInit {
  name: string= "";
-  constructor() { }
+  constructor() {
+    
+   }
 
   ngOnInit(): void {
   }
 
-  setName(name:string){
-    this.name = name;
-    console.log(name);
-  }
+ 
 }

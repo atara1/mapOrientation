@@ -11,7 +11,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { locationReducer } from './store/reducer/location.reducer';
 // import { locationNameReducer } from './store/reducer/locationName.reducer';
-
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {searchLocationReducer} from './store/reducer/searchLocation.reducer'
 
 @NgModule({
   declarations: [
@@ -25,11 +26,10 @@ import { locationReducer } from './store/reducer/location.reducer';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({locationState: locationReducer, 
-      // locationNameState: locationNameReducer 
-    
-    
-    })],
+    StoreModule.forRoot({locationData: locationReducer,
+      searchLocation: searchLocationReducer}),
+    FlexLayoutModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

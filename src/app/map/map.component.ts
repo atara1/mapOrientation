@@ -2,6 +2,12 @@ import { LocationData } from './../../assets/locationData';
 import { feature } from './../../assets/type';
 import { MapService } from './../service/map.service';
 import { Component, Input, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../store/appState';
+import { Observable } from 'rxjs';
+import { LocationInfo } from '../store/modules/locationInfo.module';
+import { searchLocationReducer } from '../store/reducer/searchLocation.reducer';
+import { skip } from 'rxjs/operators';
 
 @Component({
   selector: 'app-map',
@@ -13,46 +19,37 @@ export class MapComponent implements OnInit {
   @Input() locationname: string = "";
   address: number[] = [];
   selectedAddress: LocationData = null;
-
-  constructor(private map: MapService) { }
+  searchLocationData: Observable<LocationInfo>;
+  isLocationNotFound: boolean = false;
+  constructor(private map: MapService, private store: Store<AppState>) {
+    this.searchLocationData = this.store.select("searchLocation");
+  }
 
   ngOnInit(): void {
-    this.map.buildMap(0, 0);
+    //this.map.buildMap(0, 0);
+
+    this.searchLocationData.subscribe(data => {
+      if (data && data.center) {
+        this.map.buildMap(data.center[0], data.center[1]);
+      }
+      else {
+        this.map.buildMap(0, 0);
+      }
+    });
+    this.searchLocationData.pipe(skip(1)).subscribe(data => {
+      this.isLocationNotFound = !(data && data.center);
+    });
+
   }
 
-  search(event: string) {
-    const searchTerm = event.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      this.map.search_word(searchTerm).subscribe((featurs) => {     
-        let findLocation = featurs?.find(ele => {
-          return ele.place_name.toLowerCase().includes(event.toLowerCase());
-        });
-        this.address = !!findLocation ? findLocation["center"] : [];
-        if (this.address && this.address.length > 0) {
-          this.map.buildMap(this.address[0], this.address[1]);
-        }
-      }, (error) => {
-        console.log("error occore: ", error);
-      });
-    }
-    else {
-      this.address = [];
-    }
-  }
+
 
   addAnnontation(event: string) {
-    this.search(event);
+    this.map.search(event);
     console.log(`The user insert the ${event} to the list`)
     //atara - to do - add to store and the list
+
   }
 
-  // searchLocation(){
-  //   this.map.searchLocation(this.address).subscribe( data =>{
-  //     console.log(data);
-  //     this.selectedAddress = data;
-  //   }, (error)=>{
-  //       console.log("error occore: " ,error);
-  //     });
-  // }
 
 }

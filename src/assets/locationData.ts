@@ -14,9 +14,9 @@ text: string
 // text: "San Francisco"
 // type: "Feature"
 
-    constructor(data){
-this.center = data.center;
-this.text = data.text
+    constructor(data = null){
+       this.center = data?.center;
+       this.text = data?.text
     }
 
 

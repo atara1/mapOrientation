@@ -3,16 +3,13 @@ import { LocationInfo } from '../modules/locationInfo.module';
 
 export type Action = locationAction.all;
 
-const defualtState: LocationInfo[] = [{
-    center: [0, 0],
-    text: 'defualt'
-}]
+const defaultState: LocationInfo[] = []
 
-const newState = (state, newState) => {
-    return Object.assign({}, state, newState);
-}
+// const newState = (state, newState) => {
+//     return Object.assign({}, state, newState);
+// }
 
-export function locationReducer(state: LocationInfo[] = defualtState, action: Action) {
+export function locationReducer(state: LocationInfo[] = defaultState, action: Action) {
     console.log(action.type, state);
 
     switch (action.type) {
@@ -21,7 +18,7 @@ export function locationReducer(state: LocationInfo[] = defualtState, action: Ac
             //return newState(state, { center: action.payload });
         }
         case locationAction.DELETE: {
-            return defualtState;
+            return defaultState;
         }
         default:
             return state;

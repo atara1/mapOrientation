@@ -1,9 +1,12 @@
+import { LocationData } from './../../assets/locationData';
 import { Add, Delete } from './../store/actions/location.action';
 import { AppState } from '../store/appState';
 import { LocationInfo } from './../store/modules/locationInfo.module';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import { StoreModule, Store } from '@ngrx/store';
+import { MapService } from '../service/map.service';
+import { Update } from '../store/actions/searchLocation.action';
 //import * as locationAction from '../store/actions/location.action';
 
 
@@ -14,37 +17,56 @@ import { StoreModule, Store } from '@ngrx/store';
 })
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
-  @Output() name = new EventEmitter<string>();
-  @Output() addLocation = new EventEmitter<string>();
+searchLocationData: Observable<string>;
 
   userLocationName: string = "";
+  @Output() name = new EventEmitter<string>();
+  @Output() addLocation = new EventEmitter<string>();
+ 
 
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<AppState>, private map: MapService) {
     this.locationData = this.store.select("locationData");
+//this.searchLocationData = this.store.select("searchLocation");
+
+    // this.locationData.subscribe( data =>{
+    //   console.log(data); //locationinfo[]
+    // })
   }
 
   ngOnInit(): void {
   }
 
-  setLocation(){
-    console.log(`the user location input: ${this.userLocationName}`);
-    this.name.emit(this.userLocationName);
+  searchLocation() {
+    console.log(`The user location input: ${this.userLocationName}`);
+    this.map.search(this.userLocationName).then(data => {
+      let lngLatData: LocationData = data;
+      // if (lngLatData) {
+      //   this.map.buildMap(lngLatData?.center[0], lngLatData?.center[1]);   
+      // }     
+        this.store.dispatch(new Update(lngLatData));
+    });
+  
   }
-  addAnnontation(){
+
+  addAnnontation() {
     // send the name of the location to map 
     //for search the lng and lat and insert to store
-    this.addLocation.emit(this.userLocationName);
+    // this.addLocation.emit(this.userLocationName);
+
+    //add store 
+    this.map.search(this.userLocationName).then(data => {
+      let lngLatData: LocationData = data;
+      if (lngLatData) {
+        this.store.dispatch(new Add(lngLatData));
+      }
+      
+    });
+
+
   }
 
-
-
-  // addLocation(locationToAdd: LocationInfo) {
-  //   this.store.dispatch(new Add(locationToAdd));
-  // }
-
-  // deleteLocation() {
-  //   this.store.dispatch(new Delete());
-  // }
-
-
+  userSelected(item){
+    console.log(`User selectd ${item.text}`)
+    this.map.buildMap(item.center[0], item.center[1]);
+  }
 }
