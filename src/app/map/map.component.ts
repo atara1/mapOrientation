@@ -23,11 +23,14 @@ export class MapComponent implements OnInit {
   search(event: string) {
     const searchTerm = event.toLowerCase();
     if (searchTerm && searchTerm.length > 0) {
-      this.map.search_word(searchTerm).subscribe((featurs) => {
-        this.address = featurs.find(ele => {
+      this.map.search_word(searchTerm).subscribe((featurs) => {     
+        let findLocation = featurs?.find(ele => {
           return ele.place_name.toLowerCase().includes(event.toLowerCase());
-        })["center"];
-        this.map.buildMap(this.address[0], this.address[1]);
+        });
+        this.address = !!findLocation ? findLocation["center"] : [];
+        if (this.address && this.address.length > 0) {
+          this.map.buildMap(this.address[0], this.address[1]);
+        }
       }, (error) => {
         console.log("error occore: ", error);
       });
