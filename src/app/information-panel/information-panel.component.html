@@ -1,17 +1,21 @@
 <div class="container">
-    <div class="form-group">
-        <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="userLocationName">
-       
-        <button type="button" class="btn btn-light btnSpaces" (click)="searchLocation()">Search</button>
-        <button type="button" id="addAnnotation" class="btn btn-light" (click)="addAnnontation()">Add annotations</button>
-    </div>
+  <div class="form-group mb-0 ">
+    <input type="text" class="form-control" id="search" placeholder="Search" [(ngModel)]="userLocationName">
+  </div>
 
- 
-<div class="list-group">
-   <button type="button" *ngFor="let item of (locationData | async)" 
-   class="list-group-item list-group-item-action" (click)="userSelected( item)">
-     {{item.text}}
-   </button> 
+  <div class="my-1 d-flex">
+    <button type="button" class="btn btn-light btnSpaces col" (click)="searchLocation()">Search</button>
+    <button type="button" id="addAnnotation" class="btn btn-light col" (click)="addAnnontation()">Add annotations</button>
+  </div>
+
+  <div class="list-group">
+    <button type="button" *ngFor="let item of (locationData | async)" class="list-group-item list-group-item-action position-relative borderEle"
+      (click)="userSelected( item)">
+      {{item.text}}
+
+      <button class="position-absolute btnPosition"  (click)="deleteLocation(item)"> &times;</button>
+
+    </button>
 
   </div>
 

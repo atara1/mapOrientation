@@ -49,24 +49,27 @@ searchLocationData: Observable<string>;
   }
 
   addAnnontation() {
-    // send the name of the location to map 
-    //for search the lng and lat and insert to store
-    // this.addLocation.emit(this.userLocationName);
-
-    //add store 
+    debugger
     this.map.search(this.userLocationName).then(data => {
       let lngLatData: LocationData = data;
-      if (lngLatData) {
+      if (lngLatData?.center) {
         this.store.dispatch(new Add(lngLatData));
       }
-      
     });
-
-
   }
 
   userSelected(item){
     console.log(`User selectd ${item.text}`)
     this.map.buildMap(item.center[0], item.center[1]);
   }
+
+  deleteLocation(item){
+
+this.store.dispatch(new Delete(item));
+console.log(this.store);
+console.log(`The ${item.text} was deleted.`);
+  }
+
+
+
 }

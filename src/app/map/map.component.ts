@@ -44,12 +44,12 @@ export class MapComponent implements OnInit {
 
 
 
-  addAnnontation(event: string) {
-    this.map.search(event);
-    console.log(`The user insert the ${event} to the list`)
-    //atara - to do - add to store and the list
+  // addAnnontation(event: string) {
+  //   this.map.search(event);
+  //   console.log(`The user insert the ${event} to the list`)
+  //   //atara - to do - add to store and the list
 
-  }
+  // }
 
 
 }
