@@ -49,7 +49,6 @@ searchLocationData: Observable<string>;
   }
 
   addAnnontation() {
-    debugger
     this.map.search(this.userLocationName).then(data => {
       let lngLatData: LocationData = data;
       if (lngLatData?.center) {
