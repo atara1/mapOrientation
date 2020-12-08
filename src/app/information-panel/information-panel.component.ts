@@ -15,6 +15,8 @@ import { StoreModule, Store } from '@ngrx/store';
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
   @Output() name = new EventEmitter<string>();
+  @Output() addLocation = new EventEmitter<string>();
+
   userLocationName: string = "";
 
   constructor(private store: Store<AppState>) {
@@ -25,9 +27,16 @@ export class InformationPanelComponent implements OnInit {
   }
 
   setLocation(){
-    console.log(`the user location input:${this.userLocationName}`);
+    console.log(`the user location input: ${this.userLocationName}`);
     this.name.emit(this.userLocationName);
   }
+  addAnnontation(){
+    // send the name of the location to map 
+    //for search the lng and lat and insert to store
+    this.addLocation.emit(this.userLocationName);
+  }
+
+
 
   // addLocation(locationToAdd: LocationInfo) {
   //   this.store.dispatch(new Add(locationToAdd));

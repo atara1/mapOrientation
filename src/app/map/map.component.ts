@@ -31,14 +31,17 @@ export class MapComponent implements OnInit {
       }, (error) => {
         console.log("error occore: ", error);
       });
-
-
     }
     else {
       this.address = [];
     }
   }
 
+  addAnnontation(event: string) {
+    this.search(event);
+    console.log(`The user insert the ${event} to the list`)
+    //atara - to do - add to store and the list
+  }
 
   // searchLocation(){
   //   this.map.searchLocation(this.address).subscribe( data =>{
