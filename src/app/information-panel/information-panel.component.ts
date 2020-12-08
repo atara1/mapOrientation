@@ -13,11 +13,11 @@ import { StoreModule, Store } from '@ngrx/store';
   styleUrls: ['./information-panel.component.css']
 })
 export class InformationPanelComponent implements OnInit {
-  locationData: Observable<LocationInfo>;
-@Output() name = new EventEmitter<string>();
-userLocationName: string ="";
+  locationData: Observable<LocationInfo[]>;
+  @Output() name = new EventEmitter<string>();
+  userLocationName: string = "";
 
-  constructor(private store: Store<AppState>) { 
+  constructor(private store: Store<AppState>) {
     this.locationData = this.store.select("locationData");
   }
 
