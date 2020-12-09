@@ -35,11 +35,7 @@
 //             inject([MapService, XHRBackend], (mapService, mockBackend) => {
     
 //             const mockResponse = {
-//               data: [ {
-//                   id: 5
-//               }
-           
-//               ]
+//              
 //             };
     
 //             mockBackend.connections.subscribe((connection) => {

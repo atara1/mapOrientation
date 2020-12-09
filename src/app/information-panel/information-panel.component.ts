@@ -18,7 +18,6 @@ export class InformationPanelComponent implements OnInit {
   searchLocationData: Observable<string>;
   userLocationName: string = "";
 
-
   constructor(private store: Store<AppState>, private map: MapService) {
     this.locationData = this.store.select("locationData");
   }
@@ -27,25 +26,24 @@ export class InformationPanelComponent implements OnInit {
   }
 
   searchLocation(): void {
-    console.log(`The user location input: ${this.userLocationName}`);
     this.map.search(this.userLocationName)
-    .then(data => {
-      let lngLatData: LocationData = data;
-      this.store.dispatch(new Update(lngLatData));
-    });
+      .then(data => {
+        let lngLatData: LocationData = data;
+        this.store.dispatch(new Update(lngLatData));
+      });
   }
 
   addAnnontation(): void {
     this.map.search(this.userLocationName)
-    .then(data => {
-      let lngLatData: LocationData = data;
-      if (lngLatData?.center) {
-        this.store.dispatch(new Add(lngLatData));
-      }
-    });
+      .then(data => {
+        let lngLatData: LocationData = data;
+        if (lngLatData?.center) {
+          this.store.dispatch(new Add(lngLatData));
+        }
+      });
   }
 
-  userSelected(item: LocationInfo): void{
+  userSelected(item: LocationInfo): void {
     this.store.dispatch(new Update(item));
   }
 
