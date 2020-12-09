@@ -24,9 +24,6 @@
 //             imports: [HttpClientTestingModule],
 //             providers: [MapService]
 //         });
-//         //  service = TestBed.get(MapService);
 //     });
-
-
 
 // });
