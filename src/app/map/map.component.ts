@@ -1,7 +1,5 @@
-import { LocationData } from './../../assets/locationData';
-import { feature } from './../../assets/type';
 import { MapService } from './../service/map.service';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable } from 'rxjs';

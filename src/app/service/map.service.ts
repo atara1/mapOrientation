@@ -1,4 +1,4 @@
-import { mapboxOutput } from './../../assets/type';
+import { features, mapboxOutput } from './../../assets/type';
 import { LocationData } from './../../assets/locationData';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -34,13 +34,13 @@ export class MapService {
     let res: LocationData = new LocationData();
     const searchTerm = event.toLowerCase();
     if (searchTerm && searchTerm.length > 0) {
-      return this.search_word(searchTerm)
+      return this.searchLocation(searchTerm)
         .then((featurs) => {
           let findLocation = featurs?.find(ele => {
             return ele.place_name.toLowerCase().includes(event.toLowerCase());
           });
           if (!!findLocation) {
-            res.center = findLocation["center"];
+            res.center = findLocation.center;
             res.text = findLocation.place_name;
             return res;
           }
@@ -68,7 +68,7 @@ export class MapService {
     return throwError(error);
   }
 
-  private search_word(query: string): Promise<any> {
+  private searchLocation(query: string): Promise<features[]> {
     let url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
     return this.httpClient.get(url + query + `.json?access_token=${environment.mapbox.accessToken}`)
       .pipe(map((res: mapboxOutput) => {

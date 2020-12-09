@@ -6,7 +6,7 @@ export type Action = locationAction.all;
 const defaultState: LocationInfo[] = []
 
 export function locationReducer(state: LocationInfo[] = defaultState, action: Action) {
-    console.log(action.type, state);
+    console.log(action.type);
     switch (action.type) {
         case locationAction.ADD: {
             let foundInState: LocationInfo = state.find(ele => {
