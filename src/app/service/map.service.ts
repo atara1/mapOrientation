@@ -30,14 +30,14 @@ export class MapService {
     this.createMark(Longitude, Latitude);
   }
 
-  public search(event: string): Promise<LocationData> {
+  public search(placeName: string): Promise<LocationData> {
     let res: LocationData = new LocationData();
-    const searchTerm = event.toLowerCase();
+    const searchTerm = placeName.toLowerCase();
     if (searchTerm && searchTerm.length > 0) {
       return this.searchLocation(searchTerm)
         .then((featurs) => {
           let findLocation = featurs?.find(ele => {
-            return ele.place_name.toLowerCase().includes(event.toLowerCase());
+            return ele.place_name.toLowerCase().includes(placeName.toLowerCase());
           });
           if (!!findLocation) {
             res.center = findLocation.center;
@@ -45,7 +45,7 @@ export class MapService {
             return res;
           }
           else {
-            return {center: null , text: event};
+            return {center: null , text: placeName};
           }
         });
     }

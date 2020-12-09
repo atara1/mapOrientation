@@ -6,13 +6,12 @@ export type Action = locationAction.all;
 const defaultState: LocationInfo[] = []
 
 export function locationReducer(state: LocationInfo[] = defaultState, action: Action) {
-    console.log(action.type);
     switch (action.type) {
         case locationAction.ADD: {
             let foundInState: LocationInfo = state.find(ele => {
                 return compareLocations(ele, action.payload);
             });
-            if (!foundInState) // if the new location doesnt found in the state
+            if (!foundInState)
                 return [...state, action.payload];
         }
         case locationAction.DELETE: {

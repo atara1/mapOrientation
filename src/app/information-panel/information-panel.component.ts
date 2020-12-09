@@ -26,16 +26,18 @@ export class InformationPanelComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  searchLocation() {
+  searchLocation(): void {
     console.log(`The user location input: ${this.userLocationName}`);
-    this.map.search(this.userLocationName).then(data => {
+    this.map.search(this.userLocationName)
+    .then(data => {
       let lngLatData: LocationData = data;
       this.store.dispatch(new Update(lngLatData));
     });
   }
 
-  addAnnontation() {
-    this.map.search(this.userLocationName).then(data => {
+  addAnnontation(): void {
+    this.map.search(this.userLocationName)
+    .then(data => {
       let lngLatData: LocationData = data;
       if (lngLatData?.center) {
         this.store.dispatch(new Add(lngLatData));
@@ -43,16 +45,13 @@ export class InformationPanelComponent implements OnInit {
     });
   }
 
-  userSelected(item) {
-    console.log(`User selectd ${item.text}`);
+  userSelected(item: LocationInfo): void{
     this.store.dispatch(new Update(item));
-    //this.map.buildMap(item.center[0], item.center[1]);
   }
 
-  deleteLocation(item) {
+  deleteLocation(item: LocationInfo): void {
     this.store.dispatch(new Delete(item));
-    console.log(this.store);
-    console.log(`The ${item.text} was deleted.`);
+    // console.log(`The ${item.text} was deleted.`);
   }
 
 }

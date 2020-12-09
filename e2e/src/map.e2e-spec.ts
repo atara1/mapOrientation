@@ -11,19 +11,49 @@
 // import { HttpClientModule } from '@angular/common/http';
 // import { Type } from '@angular/core';
 // import { CommonModule } from '@angular/common';
+// import { Server } from 'http';
 
 
+// i
 
 // describe('map test', () => {
-//     let page: AppPage;
-//     let service: MapService;
-//     let httpMock: HttpTestingController;
-
+   
 //     beforeEach(async () => {
 //         TestBed.configureTestingModule({
-//             imports: [HttpClientTestingModule],
-//             providers: [MapService]
+//             imports: [HttpModule],
+//             providers: [ 
+//                 MapService,
+//                 { provide: XHRBackend, useClass: MockBackend },       
+//               ]
 //         });
+       
 //     });
+
+//     describe('getLocation()', () => {
+
+//         fit('should return an Observable<Array<Video>>',
+//             inject([MapService, XHRBackend], (mapService, mockBackend) => {
+    
+//             const mockResponse = {
+//               data: [ {
+//                   id: 5
+//               }
+           
+//               ]
+//             };
+    
+//             mockBackend.connections.subscribe((connection) => {
+//               connection.mockRespond(new Response(new ResponseOptions({
+//                 body: JSON.stringify(mockResponse)
+//               })));
+//             });
+     
+//             mapService.search('tel aviv').subscribe((location) => {
+//                 debugger
+//                 expect(location).toBeDefined();
+//             });
+    
+//         }));
+//       });
 
 // });

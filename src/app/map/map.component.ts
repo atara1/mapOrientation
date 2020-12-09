@@ -20,7 +20,8 @@ export class MapComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.searchLocationData.subscribe(data => {
+    this.searchLocationData
+    .subscribe(data => {
       if (data && data.center) {
         this.map.buildMap(data.center[0], data.center[1]);
       }
