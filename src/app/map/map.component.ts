@@ -14,9 +14,6 @@ import { skip } from 'rxjs/operators';
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit {
-  name: string;
-  address: number[] = [];
-  selectedAddress: LocationData = null;
   searchLocationData: Observable<LocationInfo>;
   isLocationNotFound: boolean = false;
 
