@@ -44,9 +44,11 @@ export class InformationPanelComponent implements OnInit {
   }
 
   userSelected(item) {
-    console.log(`User selectd ${item.text}`)
-    this.map.buildMap(item.center[0], item.center[1]);
+    console.log(`User selectd ${item.text}`);
+    this.store.dispatch(new Update(item));
+    //this.map.buildMap(item.center[0], item.center[1]);
   }
+
   deleteLocation(item) {
     this.store.dispatch(new Delete(item));
     console.log(this.store);
