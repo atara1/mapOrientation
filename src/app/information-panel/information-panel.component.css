@@ -15,6 +15,12 @@ height: 100%;
 .btnPosition{
 top: 0.3rem;
 right: 0.3rem;
+border-radius: 50%;
+border: 1px solid;
+}
+
+.btnPosition:hover {
+    background-color: red;
 }
 
 .borderEle {
