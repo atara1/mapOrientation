@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LocationOnMapComponent } from './location-on-map/location-on-map.component';
-import { MapComponent } from './map/map.component';
-
 
 const routes: Routes = [
 
@@ -15,7 +13,6 @@ const routes: Routes = [
     redirectTo: '/locationOnMap',
     pathMatch: 'full'
   },
-
 
 ];
 

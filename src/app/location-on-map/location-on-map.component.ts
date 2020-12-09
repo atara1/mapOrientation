@@ -6,10 +6,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./location-on-map.component.css']
 })
 export class LocationOnMapComponent implements OnInit {
- name: string= "";
   constructor() {
-    
-   }
+     }
 
   ngOnInit(): void {
   }

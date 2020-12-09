@@ -5,15 +5,16 @@
 
   <div class="my-1 d-flex">
     <button type="button" class="btn btn-light btnSpaces col" (click)="searchLocation()">Search</button>
-    <button type="button" id="addAnnotation" class="btn btn-light col" (click)="addAnnontation()">Add annotations</button>
+    <button type="button" id="addAnnotation" class="btn btn-light col" (click)="addAnnontation()">Add
+      annotations</button>
   </div>
 
   <div class="list-group scroll mb-1">
-    <button type="button" *ngFor="let item of (locationData | async)" class="list-group-item list-group-item-action position-relative borderEle"
-      (click)="userSelected( item)">
+    <button type="button" *ngFor="let item of (locationData | async)"
+      class="list-group-item list-group-item-action position-relative borderEle" (click)="userSelected( item)">
       {{item.text}}
 
-      <button class="position-absolute btnPosition"  (click)="deleteLocation(item)"> &times;</button>
+      <button class="position-absolute btnPosition" (click)="deleteLocation(item)"> &times;</button>
 
     </button>
 

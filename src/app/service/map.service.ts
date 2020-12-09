@@ -1,4 +1,4 @@
-import { mapboxOutput, locationType } from './../../assets/type';
+import { mapboxOutput } from './../../assets/type';
 import { LocationData } from './../../assets/locationData';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
@@ -13,9 +13,6 @@ import { throwError } from 'rxjs';
 })
 export class MapService {
   map: mapboxgl.Map;
-  //style = 'mapbox://styles/mapbox/streets-v11';
-  // lat = 45.899977;
-  // lng = 6.172652;
   zoom = 12
   constructor(private httpClient: HttpClient) {
 
@@ -65,22 +62,6 @@ export class MapService {
       console.log(marker.getLngLat());
     });
   }
-
-  // getSearchData(query: string) {    
-  //   let url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${query}.json?access_token=${environment.mapbox.accessToken}`;
-  //   return this.httpClient.get(url);
-  // }
-
-
-
-  // searchLocation(LocationName: string) {
-  //   return this.getSearchData(LocationName).pipe(
-  //     map((data: LocationData[]) =>
-  //       data["features"].map((ele: LocationData) =>
-  //         new LocationData(ele)).find(ele => ele.text === LocationName)),
-  //     catchError(this.handelError)
-  //   )  
-  // }
 
   handelError(error: HttpErrorResponse) {
     console.log(error);

@@ -10,9 +10,8 @@ import { MapComponent } from './map/map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
 import { locationReducer } from './store/reducer/location.reducer';
-// import { locationNameReducer } from './store/reducer/locationName.reducer';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import {searchLocationReducer} from './store/reducer/searchLocation.reducer'
+import { searchLocationReducer } from './store/reducer/searchLocation.reducer'
 
 @NgModule({
   declarations: [
@@ -26,8 +25,10 @@ import {searchLocationReducer} from './store/reducer/searchLocation.reducer'
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    StoreModule.forRoot({locationData: locationReducer,
-      searchLocation: searchLocationReducer}),
+    StoreModule.forRoot({
+      locationData: locationReducer,
+      searchLocation: searchLocationReducer
+    }),
     FlexLayoutModule
   ],
   providers: [],

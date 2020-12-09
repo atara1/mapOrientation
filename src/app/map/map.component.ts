@@ -6,7 +6,6 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable } from 'rxjs';
 import { LocationInfo } from '../store/modules/locationInfo.module';
-import { searchLocationReducer } from '../store/reducer/searchLocation.reducer';
 import { skip } from 'rxjs/operators';
 
 @Component({
@@ -16,18 +15,16 @@ import { skip } from 'rxjs/operators';
 })
 export class MapComponent implements OnInit {
   name: string;
-  @Input() locationname: string = "";
   address: number[] = [];
   selectedAddress: LocationData = null;
   searchLocationData: Observable<LocationInfo>;
   isLocationNotFound: boolean = false;
+
   constructor(private map: MapService, private store: Store<AppState>) {
     this.searchLocationData = this.store.select("searchLocation");
   }
 
   ngOnInit(): void {
-    //this.map.buildMap(0, 0);
-
     this.searchLocationData.subscribe(data => {
       if (data && data.center) {
         this.map.buildMap(data.center[0], data.center[1]);
@@ -41,15 +38,5 @@ export class MapComponent implements OnInit {
     });
 
   }
-
-
-
-  // addAnnontation(event: string) {
-  //   this.map.search(event);
-  //   console.log(`The user insert the ${event} to the list`)
-  //   //atara - to do - add to store and the list
-
-  // }
-
 
 }
