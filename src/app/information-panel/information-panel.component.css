@@ -5,25 +5,25 @@ border: 1px solid;
 height: 100%;
 }
 
-.btnSpaces {
+.btn-spaces {
     margin-right: 0.2rem;
 }
  .btn {
     margin-top: 0.3rem;
  }
 
-.btnPosition{
+.btn-position{
 top: 0.3rem;
 right: 0.3rem;
 border-radius: 50%;
 border: 1px solid;
 }
 
-.btnPosition:hover {
+.btn-position:hover {
     background-color: red;
 }
 
-.borderEle {
+.border-ele {
 padding-right: 2rem;
 margin-bottom: 0.2rem;
 }

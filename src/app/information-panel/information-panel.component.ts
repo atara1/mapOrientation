@@ -15,7 +15,7 @@ import { Update } from '../store/actions/searchLocation.action';
 })
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
-  searchLocationData: Observable<string>;
+  // searchLocationData: Observable<string>;
   userLocationName: string = '';
 
   constructor(private store: Store<AppState>, private map: MapService) {
@@ -33,7 +33,7 @@ export class InformationPanelComponent implements OnInit {
       });
   }
 
-  addAnnontation(): void {
+   addAnnontation(): void {
     this.map.search(this.userLocationName)
       .then(data => {
         const lngLatData: LocationData = data;
@@ -49,7 +49,6 @@ export class InformationPanelComponent implements OnInit {
 
   deleteLocation(item: LocationInfo): void {
     this.store.dispatch(new Delete(item));
-    // console.log(`The ${item.text} was deleted.`);
   }
 
 }

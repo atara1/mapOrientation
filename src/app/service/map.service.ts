@@ -5,9 +5,9 @@ import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { throwError, Observable } from 'rxjs';
 
-
+const URL_SEARCH = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
 @Injectable({
   providedIn: 'root'
 })
@@ -69,8 +69,8 @@ export class MapService {
   }
 
   private searchLocation(query: string): Promise<features[]> {
-    const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-    return this.httpClient.get( `${url}${query}.json?access_token=${environment.mapbox.accessToken}`)
+    // const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
+    return this.httpClient.get( `${URL_SEARCH}${query}.json?access_token=${environment.mapbox.accessToken}`)
       .pipe(map((res: mapboxOutput) => {
         return res.features;
       }),
