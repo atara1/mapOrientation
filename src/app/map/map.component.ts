@@ -20,8 +20,8 @@ export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
   isLocationNotFound = false;
   centerMarker: [number, number] = [0, 0];
   private subscription: Subscription;
-  mapbox: Map;
-  constructor(private mapService: MapService, private store: Store<AppState>) {
+  mapbox: Map; //this is the mapbox of angular - ngx-mapbox-gl
+  constructor(private store: Store<AppState>) {
     this.searchLocationData$ = this.store.select('searchLocation');
   }
 
