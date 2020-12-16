@@ -1,23 +1,24 @@
 import { MapService } from './../service/map.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable, Subscription } from 'rxjs';
 import { LocationInfo } from '../store/modules/locationInfo.module';
 import { skip } from 'rxjs/operators';
 
+
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.css']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements OnInit, OnDestroy {
   searchLocationData: Observable<LocationInfo>;
   isLocationNotFound: boolean = false;
   private subscription: Subscription;
 
   constructor(private map: MapService, private store: Store<AppState>) {
-    this.searchLocationData = this.store.select("searchLocation");
+    this.searchLocationData = this.store.select('searchLocation');
   }
 
   ngOnInit(): void {
@@ -36,7 +37,8 @@ export class MapComponent implements OnInit {
 
   }
 
-  ngOnDestroy() {
+  @HostListener('window:unload', ['$event'])
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 

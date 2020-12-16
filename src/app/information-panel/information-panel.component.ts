@@ -16,10 +16,10 @@ import { Update } from '../store/actions/searchLocation.action';
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
   searchLocationData: Observable<string>;
-  userLocationName: string = "";
+  userLocationName: string = '';
 
   constructor(private store: Store<AppState>, private map: MapService) {
-    this.locationData = this.store.select("locationData");
+    this.locationData = this.store.select('locationData');
   }
 
   ngOnInit(): void {
@@ -28,7 +28,7 @@ export class InformationPanelComponent implements OnInit {
   searchLocation(): void {
     this.map.search(this.userLocationName)
       .then(data => {
-        let lngLatData: LocationData = data;
+        const lngLatData: LocationData = data;
         this.store.dispatch(new Update(lngLatData));
       });
   }
@@ -36,7 +36,7 @@ export class InformationPanelComponent implements OnInit {
   addAnnontation(): void {
     this.map.search(this.userLocationName)
       .then(data => {
-        let lngLatData: LocationData = data;
+        const lngLatData: LocationData = data;
         if (lngLatData?.center) {
           this.store.dispatch(new Add(lngLatData));
         }
