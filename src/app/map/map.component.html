@@ -1,8 +1,12 @@
-<div class="map-container" id="map"></div>
+<mgl-map [zoom]="[7]" [center]="centerMarker" [style]="'mapbox://styles/mapbox/streets-v9'" (load)="mapbox = $event">
+  <mgl-marker [lngLat]="centerMarker">
+  </mgl-marker>
+</mgl-map>
 
-<div id="not-found" *ngIf="isLocationNotFound">
-    <h2>
-        The location {{(searchLocationData | async)?.text}} doesn't exist.
-    </h2>
-</div>
-  
+<!-- <div class="map-container" id="map"></div> -->
+
+<!-- <div id="not-found" *ngIf="isLocationNotFound">
+  <h2>
+    The location {{(searchLocationData | async)?.text}} doesn't exist.
+  </h2>
+</div> -->

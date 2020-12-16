@@ -1,37 +1,43 @@
 import { MapService } from './../service/map.service';
-import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable, Subscription } from 'rxjs';
 import { LocationInfo } from '../store/modules/locationInfo.module';
-import { skip } from 'rxjs/operators';
+import { map, skip } from 'rxjs/operators';
 
+import { Map } from 'mapbox-gl';
 
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  styleUrls: ['./map.component.css'],
 })
-export class MapComponent implements OnInit, OnDestroy {
-  searchLocationData: Observable<LocationInfo>;
-  isLocationNotFound: boolean = false;
-  private subscription: Subscription;
+export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
-  constructor(private map: MapService, private store: Store<AppState>) {
-    this.searchLocationData = this.store.select('searchLocation');
+  searchLocationData$: Observable<LocationInfo>;
+  searchLocationName$: Observable<string>;
+  isLocationNotFound = false;
+  centerMarker: [number, number] = [0, 0];
+  private subscription: Subscription;
+  mapbox: Map;
+  constructor(private mapService: MapService, private store: Store<AppState>) {
+    this.searchLocationData$ = this.store.select('searchLocation');
+  }
+
+  ngAfterViewInit(): void {
+    console.log(this);
   }
 
   ngOnInit(): void {
-    this.subscription = this.searchLocationData
+    this.subscription = this.searchLocationData$
       .subscribe(data => {
         if (data && data.center) {
-          this.map.buildMap(data.center[0], data.center[1]);
-        }
-        else {
-          this.map.buildMap(0, 0);
+          this.mapbox.setCenter(data.center);
+          this.centerMarker = data.center;
         }
       });
-    this.searchLocationData.pipe(skip(1)).subscribe(data => {
+    this.searchLocationData$.pipe(skip(1)).subscribe(data => {
       this.isLocationNotFound = !(data && data.center);
     });
 

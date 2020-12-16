@@ -17,38 +17,38 @@
 // i
 
 // describe('map test', () => {
-   
+
 //     beforeEach(async () => {
 //         TestBed.configureTestingModule({
 //             imports: [HttpModule],
-//             providers: [ 
+//             providers: [
 //                 MapService,
-//                 { provide: XHRBackend, useClass: MockBackend },       
+//                 { provide: XHRBackend, useClass: MockBackend },
 //               ]
 //         });
-       
+
 //     });
 
 //     describe('getLocation()', () => {
 
 //         fit('should return an Observable<Array<Video>>',
 //             inject([MapService, XHRBackend], (mapService, mockBackend) => {
-    
+
 //             const mockResponse = {
-//              
+//
 //             };
-    
+
 //             mockBackend.connections.subscribe((connection) => {
 //               connection.mockRespond(new Response(new ResponseOptions({
 //                 body: JSON.stringify(mockResponse)
 //               })));
 //             });
-     
+
 //             mapService.search('tel aviv').subscribe((location) => {
 //                 debugger
 //                 expect(location).toBeDefined();
 //             });
-    
+
 //         }));
 //       });
 

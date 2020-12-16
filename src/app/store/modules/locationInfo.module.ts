@@ -1,4 +1,4 @@
 export interface LocationInfo {
-    center: Array<number>;
-    text: string
+  center: [number, number];
+  text: string;
 }
