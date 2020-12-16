@@ -16,7 +16,6 @@ import { first } from 'rxjs/operators';
 })
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
-  // searchLocationData: Observable<string>;
   userLocationName = '';
 
   constructor(private store: Store<AppState>, private map: MapService) {

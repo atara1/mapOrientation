@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable, Subscription } from 'rxjs';
 import { LocationInfo } from '../store/modules/locationInfo.module';
-import { map, skip } from 'rxjs/operators';
+import { skip } from 'rxjs/operators';
 
 import { Map } from 'mapbox-gl';
 
