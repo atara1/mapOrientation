@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { MapService } from '../service/map.service';
 import { Update } from '../store/actions/searchLocation.action';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-information-panel',
@@ -16,26 +17,26 @@ import { Update } from '../store/actions/searchLocation.action';
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;
   // searchLocationData: Observable<string>;
-  userLocationName: string = '';
+  userLocationName = '';
 
   constructor(private store: Store<AppState>, private map: MapService) {
     this.locationData = this.store.select('locationData');
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   searchLocation(): void {
     this.map.search(this.userLocationName)
-      .then(data => {
+      .pipe(first())
+      .subscribe(data => {
         const lngLatData: LocationData = data;
         this.store.dispatch(new Update(lngLatData));
-      });
+      }, console.error);
   }
 
-   addAnnontation(): void {
+  addAnnontation(): void {
     this.map.search(this.userLocationName)
-      .then(data => {
+      .pipe(first()).subscribe(data => {
         const lngLatData: LocationData = data;
         if (lngLatData?.center) {
           this.store.dispatch(new Add(lngLatData));

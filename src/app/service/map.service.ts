@@ -1,11 +1,11 @@
-import { features, mapboxOutput } from './../../assets/type';
+import { Features, MapboxOutput } from './../../assets/type';
 import { LocationData } from './../../assets/locationData';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import * as mapboxgl from 'mapbox-gl';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { catchError, map } from 'rxjs/operators';
-import { throwError, Observable } from 'rxjs';
+import { throwError, Observable, from, EMPTY } from 'rxjs';
 
 const URL_SEARCH = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
 @Injectable({
@@ -30,25 +30,20 @@ export class MapService {
     this.createMark(Longitude, Latitude);
   }
 
-  public search(placeName: string): Promise<LocationData> {
-    const res: LocationData = new LocationData();
-    const searchTerm = placeName.toLowerCase();
-    if (searchTerm && searchTerm.length > 0) {
-      return this.searchLocation(searchTerm)
-        .then((featurs) => {
-          const findLocation = featurs?.find(ele => {
-            return ele.place_name.toLowerCase().includes(placeName.toLowerCase());
-          });
-          if (!!findLocation) {
-            res.center = findLocation.center;
-            res.text = findLocation.place_name;
-            return res;
-          }
-          else {
-            return {center: null , text: placeName};
-          }
+  public search(placeName: string): Observable<LocationData> {
+
+    return this.searchLocation(placeName).pipe(
+      map(features => {
+        const findLocation = features?.find(ele => {
+          return ele.place_name.toLowerCase().includes(placeName.toLowerCase());
         });
-    }
+        if (!!findLocation) {
+          return { center: findLocation.center, text: findLocation.place_name };
+        }
+        else {
+          return { center: null, text: placeName };
+        }
+      }));
   }
 
   private createMark(lng: number, lat: number): void {
@@ -68,13 +63,10 @@ export class MapService {
     return throwError(error);
   }
 
-  private searchLocation(query: string): Promise<features[]> {
+  private searchLocation(query: string): Observable<Features[]> {
     // const url = 'https://api.mapbox.com/geocoding/v5/mapbox.places/';
-    return this.httpClient.get( `${URL_SEARCH}${query}.json?access_token=${environment.mapbox.accessToken}`)
-      .pipe(map((res: mapboxOutput) => {
-        return res.features;
-      }),
-        catchError(this.handelError)).toPromise();
+    return this.httpClient
+      .get(`${URL_SEARCH}${query}.json?access_token=${environment.mapbox.accessToken}`)
+      .pipe(map((res: MapboxOutput) => res.features));
   }
-
 }

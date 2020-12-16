@@ -1,44 +1,45 @@
-export interface locationType {
-    lng: number,
-    lat: number
+
+export interface LocationType {
+  lng: number;
+  lat: number;
 }
 
-export interface mapboxOutput {
-    attribution: string,
-    features: features[],
-    query: []
+export interface MapboxOutput {
+  attribution: string;
+  features: Features[];
+  query: [];
 }
 
 // export interface feature {
 //     place_name: string
 // }
 
-export type features = {
-    bbox: number[],
-    center: number[],
-    context: contextInfo[],
-    geometry: geometryData,
-    id: string,
-    place_name: string,
-    place_type: string[],
-    properties: propertiesData,
-    relevance: number,
-    text: string,
-    type: string
+export type Features = {
+  bbox: number[],
+  center: [number, number],
+  context: ContextInfo[],
+  geometry: GeometryData,
+  id: string,
+  place_name: string,
+  place_type: string[],
+  properties: PropertiesData,
+  relevance: number,
+  text: string,
+  type: string
+};
+
+interface PropertiesData {
+  wikidata: string;
 }
 
-interface propertiesData {
-    wikidata: string
+interface GeometryData {
+  type: string;
+  coordinates: [number, number];
 }
 
-interface geometryData {
-    type: string,
-    coordinates: number[]
-}
-
-interface contextInfo {
-    id: string,
-    short_code: string,
-    text: string,
-    wikidata: string
+interface ContextInfo {
+  id: string;
+  short_code: string;
+  text: string;
+  wikidata: string;
 }

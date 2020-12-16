@@ -7,12 +7,12 @@ const defaultState: LocationInfo = { center: null, text: '' };
 
 export function searchLocationReducer(state: LocationInfo = defaultState, action: Action) {
 
-    switch (action.type) {
-        case searchLocation.UPDATE: {
-            return action.payload;
-        }
-
-        default:
-            return state;
+  switch (action.type) {
+    case searchLocation.UPDATE: {
+      return action.payload;
     }
+
+    default:
+      return state;
+  }
 }

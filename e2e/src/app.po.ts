@@ -10,11 +10,11 @@ export class AppPage {
   }
 
   getAddAnnotationButton(){
-   return element(By.id('addAnnotation'))
+   return element(By.id('addAnnotation'));
   }
 
   getSearchBtn(){
-    return element(By.id('searchBtn'))
+    return element(By.id('searchBtn'));
    }
 
   getList(){
@@ -25,9 +25,9 @@ getInput(){
   return element(By.id('search'));
 }
 setInputText(value: string){
-  let setInput =  element(By.css(`[id=search]`));
+  const setInput =  element(By.css(`[id=search]`));
   setInput.sendKeys(value);
-return setInput;      
+  return setInput;
 }
 
 
