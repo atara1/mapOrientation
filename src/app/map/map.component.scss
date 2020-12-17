@@ -1,7 +1,21 @@
 $full-screen: 100%;
 
+$desktop: 840px;
+@mixin desktop{
+@media(max-width: #{$desktop}){
+    @content;
+}
+}
+
 :host{
   width: $full-screen;
+
+  @include desktop(){
+    left: -6rem;
+    height: 50%;
+    position: relative;
+    top: 20rem;
+  }
 }
 mgl-map {
   width: $full-screen;

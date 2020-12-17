@@ -2,6 +2,15 @@
   width: 100%;
 }
 
+@media (max-width: 840px) {
+  :host {
+    left: -6rem;
+    height: 50%;
+    position: relative;
+    top: 20rem;
+  }
+}
+
 mgl-map {
   width: 100%;
   height: 100%;

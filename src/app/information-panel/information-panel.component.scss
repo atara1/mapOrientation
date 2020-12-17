@@ -17,6 +17,18 @@ $desktop: 840px;
 @function getSize( $size-name){
     @return map-get($size, $size-name);
 }
+
+
+:host {
+    @include desktop(){
+    height: 50%;
+    width: 100%;
+    }
+}
+
+
+
+
 .container {
 display: flex;
 flex-flow: column nowrap;
