@@ -1,0 +1,62 @@
+ // $full-screen: 100%;
+
+ $margin-top: 0.3rem;
+ $border: 1px solid black;
+$size: (
+    full-screen: 100%,
+    radius: 50%
+); 
+
+$desktop: 840px;
+@mixin desktop{
+@media(max-width: #{$desktop}){
+    @content;
+}
+}
+
+@function getSize( $size-name){
+    @return map-get($size, $size-name);
+}
+.container {
+display: flex;
+flex-flow: column nowrap;
+border: $border; //1px solid;
+height: getSize(full-screen);
+#search{
+    margin-top: $margin-top;
+}
+}
+
+.btn-spaces {
+    margin-right: 0.2rem;
+}
+ .btn {
+    margin-top: $margin-top;
+ }
+
+.btn-position{
+top: $margin-top;
+right: 0.3rem;
+border-radius: getSize(radius);
+}
+
+#addAnnotation {
+@include desktop(){ //for responsive 
+    top: 4rem;
+    left: -4rem;
+}
+}
+
+.border-ele {
+padding-right: 2.3rem;
+margin-bottom: 0.2rem;
+}
+
+// #search{
+//     margin-top: 0.3rem;
+// }
+
+.scroll{
+    height: getSize(full-screen);
+    overflow-y: auto;
+}

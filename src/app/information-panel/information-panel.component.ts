@@ -12,7 +12,7 @@ import { first } from 'rxjs/operators';
 @Component({
   selector: 'app-information-panel',
   templateUrl: './information-panel.component.html',
-  styleUrls: ['./information-panel.component.css']
+  styleUrls: ['./information-panel.component.scss']
 })
 export class InformationPanelComponent implements OnInit {
   locationData: Observable<LocationInfo[]>;

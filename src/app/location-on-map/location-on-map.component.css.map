@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AACA,AAAA,OAAO,CAAA;EACP,MAAM,EAAE,IAAI;CACX",
+    "sources": [
+        "location-on-map.component.scss"
+    ],
+    "names": [],
+    "file": "location-on-map.component.css"
+}

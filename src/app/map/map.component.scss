@@ -1,0 +1,22 @@
+$full-screen: 100%;
+
+:host{
+  width: $full-screen;
+}
+mgl-map {
+  width: $full-screen;
+  height: $full-screen;
+}
+.map-container {
+    width: $full-screen;
+    height: $full-screen;
+  }
+
+#not-found{
+color: red;
+position: absolute;
+width: $full-screen;
+height: $full-screen;
+top: 0;
+}
+

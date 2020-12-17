@@ -1,20 +1,22 @@
-:host{
+:host {
   width: 100%;
 }
+
 mgl-map {
   width: 100%;
   height: 100%;
 }
-.map-container {
-    width: 100%;
-    height: 100%;
-  }
 
-#not-found{
-color: red;
-position: absolute;
-width: 100%;
-height: 100%;
-top: 0;
+.map-container {
+  width: 100%;
+  height: 100%;
 }
 
+#not-found {
+  color: red;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+}
+/*# sourceMappingURL=map.component.css.map */
