@@ -13,7 +13,7 @@
     <button type="button" *ngFor="let item of (locationData | async)"
       class="list-group-item list-group-item-action position-relative border-ele" (click)="userSelected( item)">
       {{item.text}}
-      <button class="position-absolute btn-position btn btn-circle" (click)="deleteLocation(item)"> &times;</button>
+      <button class="position-absolute btn-position btn btn-circle" (click)="deleteLocation(item)"> &times;</button> 
     </button>
   </div>
 </div>

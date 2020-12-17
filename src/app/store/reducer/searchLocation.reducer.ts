@@ -5,7 +5,7 @@ export type Action = searchLocation.all;
 
 const defaultState: LocationInfo = { center: null, text: '' };
 
-export function searchLocationReducer(state: LocationInfo = defaultState, action: Action) {
+export function searchLocationReducer(state: LocationInfo = defaultState, action: Action): LocationInfo {
 
   switch (action.type) {
     case searchLocation.UPDATE: {
