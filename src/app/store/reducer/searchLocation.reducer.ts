@@ -1,5 +1,6 @@
+import { LocationInfo } from '../../store/modles/locationInfo.modle';
 import * as searchLocation from '../actions/searchLocation.action';
-import { LocationInfo } from '../modules/locationInfo.module';
+
 
 export type Action = searchLocation.all;
 

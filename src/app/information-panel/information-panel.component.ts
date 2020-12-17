@@ -1,7 +1,7 @@
 import { LocationData } from './../../assets/locationData';
 import { Add, Delete } from './../store/actions/location.action';
 import { AppState } from '../store/appState';
-import { LocationInfo } from './../store/modules/locationInfo.module';
+import { LocationInfo } from '../store/modles/locationInfo.modle';
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';

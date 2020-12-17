@@ -1,5 +1,5 @@
 import * as locationAction from '../actions/location.action';
-import { LocationInfo } from '../modules/locationInfo.module';
+import { LocationInfo } from '../../store/modles/locationInfo.modle';
 
 export type Action = locationAction.all;
 

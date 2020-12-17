@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { LocationInfo } from '../modules/locationInfo.module';
+import { LocationInfo } from '../../store/modles/locationInfo.modle';
 
 export const UPDATE = '[LocationInfo] Update';
 

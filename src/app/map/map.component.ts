@@ -3,7 +3,7 @@ import { Component, OnInit, OnDestroy, HostListener, AfterViewInit } from '@angu
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable, Subscription } from 'rxjs';
-import { LocationInfo } from '../store/modules/locationInfo.module';
+import { LocationInfo } from '../store/modles/locationInfo.modle';
 import { skip } from 'rxjs/operators';
 
 import { Map } from 'mapbox-gl';
