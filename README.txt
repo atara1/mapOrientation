@@ -1,4 +1,3 @@
-Atara Buzaglo 0545919725
 
 To start the project:
 1. clone from git the repository https://github.com/atara1/mapOrientation

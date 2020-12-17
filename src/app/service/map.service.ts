@@ -1,4 +1,4 @@
-import { Features, MapboxOutput } from './../../assets/type';
+import { Features, MapboxOutput } from './../../assets/locationData';
 import { LocationData } from './../../assets/locationData';
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
