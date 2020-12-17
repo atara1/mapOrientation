@@ -1,17 +1,13 @@
-import { Action } from '@ngrx/store';
+import { createAction, props } from '@ngrx/store';
 import { LocationInfo } from '../../store/modles/locationInfo.modle';
 
-export const ADD = '[LocationInfo] Add';
-export const DELETE = '[LocationInfo] Delete';
 
-export class Add implements Action {
-    readonly type = ADD;
-    constructor(public payload: LocationInfo) { }
-}
+export const Add = createAction(
+    '[LocationInfo] Add',
+    props<LocationInfo>()
+);
 
-export class Delete implements Action {
-    readonly type = DELETE;
-    constructor(public payload: LocationInfo) { }
-}
-
-export type all = Add | Delete;
+export const Delete = createAction(
+    '[LocationInfo] Delete',
+    props<LocationInfo>()
+);

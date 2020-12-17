@@ -1,5 +1,5 @@
 import { LocationInfo } from '../store/modles/locationInfo.modle';
-export interface AppState {
+export class AppState {
   locationData: LocationInfo[];
   searchLocation: LocationInfo;
 }

@@ -1,29 +1,33 @@
 import * as locationAction from '../actions/location.action';
 import { LocationInfo } from '../../store/modles/locationInfo.modle';
+import { createReducer, on, Action } from '@ngrx/store';
 
-export type Action = locationAction.all;
 
 const defaultState: LocationInfo[] = [];
 
-export function locationReducer(state: LocationInfo[] = defaultState, action: Action): LocationInfo[] {
-    switch (action.type) {
-        case locationAction.ADD: {
-            const foundInState: LocationInfo = state.find(ele => {
-                return compareLocations(ele, action.payload);
-            });
-            if (!foundInState) {
-                return [...state, action.payload];
-            }
+const reducer = createReducer(
+    defaultState,
+    on(locationAction.Add, (state: LocationInfo[], newData: LocationInfo) => {
+        const foundInState: LocationInfo = state.find(ele => {
+            return compareLocations(ele, newData);
+        });
+        if (!foundInState) {
+            return [...state, newData];
         }
-        case locationAction.DELETE: {
-            return state.filter(ele => {
-                return ele !== action.payload;
-            });
-        }
-        default:
+        else{
             return state;
-    }
+        }
+    }),
+    on(locationAction.Delete, (state: LocationInfo[], newData: LocationInfo) => {
+        return state.filter(ele => {
+            return ele.text !== newData.text;
+        });
+    })
 
+);
+
+export function locationReducer(state: LocationInfo[] | undefined, action: Action): LocationInfo[] {
+    return reducer(state, action);
 }
 
 function compareLocations(firstLocation: LocationInfo, secondLocation: LocationInfo): boolean {
@@ -34,10 +38,4 @@ function compareLocations(firstLocation: LocationInfo, secondLocation: LocationI
         }
     }
     return firstLocation?.text === secondLocation?.text;
-    // if (firstLocation?.text !== secondLocation?.text) {
-    //     return false;
-    // }
-
-    // return true;
-
 }
