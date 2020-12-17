@@ -19,12 +19,13 @@ border-radius: 50%;
 border: 1px solid;
 }
 
+/* 
 .btn-position:hover {
     background-color: red;
-}
+} */
 
 .border-ele {
-padding-right: 2rem;
+padding-right: 2.3rem;
 margin-bottom: 0.2rem;
 }
 
