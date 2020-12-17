@@ -40,6 +40,9 @@ export class InformationPanelComponent implements OnInit {
         if (lngLatData?.center) {
           this.store.dispatch(new Add(lngLatData));
         }
+        else{
+          this.store.dispatch(new Update(lngLatData)); /* if the location doesnt exist we update the store for the error message */
+        }
       });
   }
 
