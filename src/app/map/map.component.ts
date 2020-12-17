@@ -1,11 +1,9 @@
-import { MapService } from './../service/map.service';
 import { Component, OnInit, OnDestroy, HostListener, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/appState';
 import { Observable, Subscription } from 'rxjs';
 import { LocationInfo } from '../store/modles/locationInfo.modle';
 import { skip } from 'rxjs/operators';
-
 import { Map } from 'mapbox-gl';
 
 @Component({
@@ -16,11 +14,11 @@ import { Map } from 'mapbox-gl';
 export class MapComponent implements OnInit, OnDestroy, AfterViewInit {
 
   searchLocationData$: Observable<LocationInfo>;
-  searchLocationName$: Observable<string>;
   isLocationNotFound = false;
   centerMarker: [number, number] = [0, 0];
   private subscription: Subscription;
   mapbox: Map; /* this is the mapbox of angular - ngx-mapbox-gl */
+
   constructor(private store: Store<AppState>) {
     this.searchLocationData$ = this.store.select('searchLocation');
   }

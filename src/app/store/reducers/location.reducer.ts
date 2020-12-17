@@ -14,7 +14,6 @@ export function locationReducer(state: LocationInfo[] = defaultState, action: Ac
             if (!foundInState) {
                 return [...state, action.payload];
             }
-            break;
         }
         case locationAction.DELETE: {
             return state.filter(ele => {
@@ -34,10 +33,11 @@ function compareLocations(firstLocation: LocationInfo, secondLocation: LocationI
             return false;
         }
     }
-    if (firstLocation?.text !== secondLocation?.text) {
-        return false;
-    }
+    return firstLocation?.text === secondLocation?.text;
+    // if (firstLocation?.text !== secondLocation?.text) {
+    //     return false;
+    // }
 
-    return true;
+    // return true;
 
 }

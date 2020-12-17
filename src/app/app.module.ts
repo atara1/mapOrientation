@@ -9,9 +9,9 @@ import { LocationOnMapComponent } from './location-on-map/location-on-map.compon
 import { MapComponent } from './map/map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreModule } from '@ngrx/store';
-import { locationReducer } from './store/reducer/location.reducer';
+import { locationReducer } from './store/reducers/location.reducer';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { searchLocationReducer } from './store/reducer/searchLocation.reducer';
+import { searchLocationReducer } from './store/reducers/searchLocation.reducer';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from 'src/environments/environment';
 @NgModule({
