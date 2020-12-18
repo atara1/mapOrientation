@@ -1,3 +1,4 @@
+import { LocationEffects } from './store/effects/location.effects';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -14,6 +15,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { searchLocationReducer } from './store/reducers/searchLocation.reducer';
 import { NgxMapboxGLModule } from 'ngx-mapbox-gl';
 import { environment } from 'src/environments/environment';
+import { EffectsModule } from '@ngrx/effects';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +32,8 @@ import { environment } from 'src/environments/environment';
       locationData: locationReducer,
       searchLocation: searchLocationReducer
     }),
+   EffectsModule.forRoot([LocationEffects]),
+
     FlexLayoutModule,
     NgxMapboxGLModule.withConfig({ accessToken: environment.mapbox.accessToken })
   ],

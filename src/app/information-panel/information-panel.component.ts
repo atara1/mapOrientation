@@ -18,20 +18,25 @@ import * as searchLocationActions from '../store/actions/searchLocation.action';
 export class InformationPanelComponent implements OnInit {
   locationData$: Observable<LocationInfo[]>;
   userLocationName = '';
+ // searchLocationData$: Observable<LocationInfo>;
 
   constructor(private store: Store<AppState>, private map: MapService) {
     this.locationData$ = store.pipe(select('locationData'));
+
+//  this.searchLocationData$ = store.pipe(select('searchLocation')); //this.store.select('searchLocation');
   }
 
   ngOnInit(): void { }
 
   searchLocation(): void {
-    this.map.search(this.userLocationName)
-      .pipe(first())
-      .subscribe(data => {
-        const lngLatData: LocationData = data;
-        this.store.dispatch(searchLocationActions.Update(lngLatData));
-      }, console.error);
+
+    this.store.dispatch(searchLocationActions.LocationSearch({query: this.userLocationName}));
+    // this.map.search(this.userLocationName)
+    //   .pipe(first())
+    //   .subscribe(data => {
+    //     const lngLatData: LocationData = data;
+    //     this.store.dispatch(searchLocationActions.Update(lngLatData));
+    //   }, console.error);
   }
 
   addAnnontation(): void {

@@ -23,7 +23,6 @@ const reducer = createReducer(
             return ele.text !== newData.text;
         });
     })
-
 );
 
 export function locationReducer(state: LocationInfo[] | undefined, action: Action): LocationInfo[] {

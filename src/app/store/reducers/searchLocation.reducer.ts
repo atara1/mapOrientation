@@ -15,5 +15,6 @@ const reducer = createReducer(
 );
 
 export function searchLocationReducer(state: LocationInfo | undefined, action: Action): LocationInfo {
+  console.log(state, action);
   return reducer(state, action);
 }
